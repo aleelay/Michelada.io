@@ -46,19 +46,28 @@ const examples = [
 
 function normalizeData(input) {
   // Year Validation
-  if(input.year >=1900 && input.year <= (new Date()).getFullYear()+2){
-    console.log("Valid Date");
-  } else{console.log("Not Valid Date")}
+  let normalized = {};
+  const year = input.year;
+  if(year >=1900 && year <= (new Date()).getFullYear()+2){
+    normalized.year = parseInt(year);
+  } else if(year.length == 4){
+    year+='0';
+    normalized.year = parseInt(year);
+  } else {
+    // normalized.year = year;
+  }
 
   //Validating if Trim is in model
   let checkTrim = input.model.split(2, " ");
-  console.log("Trim", checkTrim);
+  // console.log("Trim", checkTrim);
+  console.log("Year", year.length)
+  console.log("el objeto: ", normalized);
 }
 
 function areEquals(first, second) {
-  console.log("In areEquals 1", first);
-  console.log("In areEquals 2", second);
-  console.log(first == second);
+  // console.log("In areEquals 1", first);
+  // console.log("In areEquals 2", second);
+  // console.log(first == second);
 }
 
 examples.forEach(({'0': input, '1': expected_output}, index) => {
